@@ -7,6 +7,41 @@ def get_degit(degit):
     new = current + str(degit)
     result_class.config(text=new)
 
+#function for clear
+def clear ():
+    result_class.config(text="")
+
+#for operators
+first_number = second_number = operator = None
+
+#function for operator
+def for_operator(op):
+    global first_number,operator
+
+    first_number = int(result_class["text"])
+    operator = op
+    result_class.config(text="")
+
+def for_result():
+    global first_number,second_number,operator
+
+    second_number = int(result_class["text"])
+
+    if operator == "+":
+        result_class.config(text = str(first_number + second_number))
+
+    elif operator == "-":
+        result_class.config(text = str(first_number - second_number))
+
+    elif operator == "*":
+        result_class.config(text = str(first_number * second_number))
+
+    else:
+        if second_number == 0:
+            result_class.config(text = "∞")
+        else:
+            result_class.config(text = str(first_number / second_number))
+
 
 #main window 
 root = tk.Tk()
@@ -37,7 +72,7 @@ result_butt9.grid(row = 1,column =2)
 result_butt9.configure(font = ("verdana",14,"bold"))
 
 #button_add
-result_add = Button(root,text = "+",bg = "orange",fg = "black",width= 6,height = 3)
+result_add = Button(root,text = "+",bg = "orange",fg = "black",width= 6,height = 3, command= lambda: for_operator("+"))
 result_add.grid(row = 1,column = 3)
 result_add.configure(font = ("verdana",14,"bold"))
 
@@ -58,7 +93,7 @@ result_butt6.grid(row = 2,column =2)
 result_butt6.configure(font = ("verdana",14,"bold"))
 
 #button_subtract
-result_sub = Button(root,text = "-",bg = "orange",fg = "black",width= 6, height = 3)
+result_sub = Button(root,text = "-",bg = "orange",fg = "black",width= 6, height = 3, command = lambda: for_operator("-"))
 result_sub.grid(row = 2,column = 3)
 result_sub.configure(font= ("verdana",14,"bold"))
 
@@ -79,13 +114,13 @@ result_butt3.grid(row = 3,column = 2)
 result_butt3.configure(font= ("verdana",14,"bold"))
 
 #button_multiply
-result_mul = Button(root,text = "X",bg = "orange",fg = "black",width= 6, height = 3)
+result_mul = Button(root,text = "X",bg = "orange",fg = "black",width= 6, height = 3, command = lambda: for_operator("*"))
 result_mul.grid(row = 3,column = 3)
 result_mul.configure(font= ("verdana",14,"bold"))
 
 
 #button_clear
-result_clear = Button(root,text = "C",bg = "orange",fg = "black",width= 6, height = 3)
+result_clear = Button(root,text = "C",bg = "orange",fg = "black",width= 6, height = 3,command = lambda: clear())
 result_clear.grid(row = 4,column = 0)
 result_clear.configure(font= ("verdana",14,"bold"))
 
@@ -95,12 +130,12 @@ result_zero.grid(row = 4,column = 1)
 result_zero.configure(font= ("verdana",14,"bold"))
 
 #button_equal
-result_eql = Button(root,text = "=",bg = "orange",fg = "black",width= 6, height = 3)
+result_eql = Button(root,text = "=",bg = "orange",fg = "black",width= 6, height = 3, command = lambda: for_result())
 result_eql.grid(row = 4,column = 2)
 result_eql.configure(font= ("verdana",14,"bold"))
 
 #button_divide 
-result_div = Button(root,text = "/",bg = "orange",fg = "black",width= 6, height = 3)
+result_div = Button(root,text = "/",bg = "orange",fg = "black",width= 6, height = 3,command = lambda: for_operator("/"))
 result_div.grid(row = 4,column = 3)
 result_div.configure(font= ("verdana",14,"bold"))
 
