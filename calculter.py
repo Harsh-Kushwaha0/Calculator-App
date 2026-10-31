@@ -38,7 +38,7 @@ def for_result():
 
     else:
         if second_number == 0:
-            result_class.config(text = "∞")
+            result_class.config(text = "Error")
         else:
             result_class.config(text = str(first_number / second_number))
 
